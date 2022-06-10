@@ -1,0 +1,175 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="studentModel1.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="NotiId" />
+          </Key>
+          <Property Name="NotiId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FromUserId" Type="int" />
+          <Property Name="ToUserId" Type="int" />
+          <Property Name="NotiHeader" Type="varchar(max)" />
+          <Property Name="NotiBody" Type="varchar(max)" />
+          <Property Name="IsRead" Type="bit" />
+          <Property Name="Url" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="user_noti">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'student.dbo.VIEW_NOTIFICATION1' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="VIEW_NOTIFICATION1">
+          <Key>
+            <PropertyRef Name="NotiId" />
+          </Key>
+          <Property Name="NotiId" Type="int" Nullable="false" />
+          <Property Name="FromUserId" Type="int" />
+          <Property Name="ToUserId" Type="int" />
+          <Property Name="NotiHeader" Type="varchar(max)" />
+          <Property Name="NotiBody" Type="varchar(max)" />
+          <Property Name="IsRead" Type="bit" />
+          <Property Name="Url" Type="varchar(max)" />
+          <Property Name="CreatedDate" Type="datetime" />
+          <Property Name="FromUserName" Type="varchar" MaxLength="50" />
+          <Property Name="ToUserName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityContainer Name="studentModel1StoreContainer">
+          <EntitySet Name="notification" EntityType="Self.notification" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="user_noti" EntityType="Self.user_noti" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIEW_NOTIFICATION1" EntityType="Self.VIEW_NOTIFICATION1" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [VIEW_NOTIFICATION1].[NotiId] AS [NotiId], 
+    [VIEW_NOTIFICATION1].[FromUserId] AS [FromUserId], 
+    [VIEW_NOTIFICATION1].[ToUserId] AS [ToUserId], 
+    [VIEW_NOTIFICATION1].[NotiHeader] AS [NotiHeader], 
+    [VIEW_NOTIFICATION1].[NotiBody] AS [NotiBody], 
+    [VIEW_NOTIFICATION1].[IsRead] AS [IsRead], 
+    [VIEW_NOTIFICATION1].[Url] AS [Url], 
+    [VIEW_NOTIFICATION1].[CreatedDate] AS [CreatedDate], 
+    [VIEW_NOTIFICATION1].[FromUserName] AS [FromUserName], 
+    [VIEW_NOTIFICATION1].[ToUserName] AS [ToUserName]
+    FROM [dbo].[VIEW_NOTIFICATION1] AS [VIEW_NOTIFICATION1]</DefiningQuery>
+          </EntitySet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="studentModel1" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="notification">
+          <Key>
+            <PropertyRef Name="NotiId" />
+          </Key>
+          <Property Name="NotiId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FromUserId" Type="Int32" />
+          <Property Name="ToUserId" Type="Int32" />
+          <Property Name="NotiHeader" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NotiBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsRead" Type="Boolean" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="user_noti">
+          <Key>
+            <PropertyRef Name="UserId" />
+          </Key>
+          <Property Name="UserId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="VIEW_NOTIFICATION1">
+          <Key>
+            <PropertyRef Name="NotiId" />
+          </Key>
+          <Property Name="NotiId" Type="Int32" Nullable="false" />
+          <Property Name="FromUserId" Type="Int32" />
+          <Property Name="ToUserId" Type="Int32" />
+          <Property Name="NotiHeader" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="NotiBody" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="IsRead" Type="Boolean" />
+          <Property Name="Url" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedDate" Type="DateTime" Precision="3" />
+          <Property Name="FromUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="ToUserName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityContainer Name="notificationEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="notifications" EntityType="Self.notification" />
+          <EntitySet Name="user_noti" EntityType="Self.user_noti" />
+          <EntitySet Name="VIEW_NOTIFICATION1" EntityType="Self.VIEW_NOTIFICATION1" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="studentModel1StoreContainer" CdmEntityContainer="notificationEntities">
+          <EntitySetMapping Name="notifications">
+            <EntityTypeMapping TypeName="studentModel1.notification">
+              <MappingFragment StoreEntitySet="notification">
+                <ScalarProperty Name="NotiId" ColumnName="NotiId" />
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+                <ScalarProperty Name="NotiHeader" ColumnName="NotiHeader" />
+                <ScalarProperty Name="NotiBody" ColumnName="NotiBody" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="user_noti">
+            <EntityTypeMapping TypeName="studentModel1.user_noti">
+              <MappingFragment StoreEntitySet="user_noti">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VIEW_NOTIFICATION1">
+            <EntityTypeMapping TypeName="studentModel1.VIEW_NOTIFICATION1">
+              <MappingFragment StoreEntitySet="VIEW_NOTIFICATION1">
+                <ScalarProperty Name="NotiId" ColumnName="NotiId" />
+                <ScalarProperty Name="FromUserId" ColumnName="FromUserId" />
+                <ScalarProperty Name="ToUserId" ColumnName="ToUserId" />
+                <ScalarProperty Name="NotiHeader" ColumnName="NotiHeader" />
+                <ScalarProperty Name="NotiBody" ColumnName="NotiBody" />
+                <ScalarProperty Name="IsRead" ColumnName="IsRead" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="CreatedDate" ColumnName="CreatedDate" />
+                <ScalarProperty Name="FromUserName" ColumnName="FromUserName" />
+                <ScalarProperty Name="ToUserName" ColumnName="ToUserName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

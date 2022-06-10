@@ -1,0 +1,74 @@
+﻿@model student_management.Models.user
+
+@{
+    ViewBag.Title = "Create";
+}
+
+<h2>Create</h2>
+
+
+<style>
+
+    
+    .center {
+        height: 200px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    .form-group {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+<div class="form-horizontal">
+    <h4>Login</h4>
+
+    <hr />
+    @Html.ValidationSummary(true)
+
+
+    <div style="align-content:center" class="center">
+        <img style="width:200px; height:200px" src="~/images/userlogin.png" />
+        &nbsp;
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.username, new { @class = "control-label col-md-8" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.username)
+            @Html.ValidationMessageFor(model => model.username)
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.password, new { @class = "control-label col-md-8" })
+        <div class="col-md-10">
+            @Html.PasswordFor(model => model.password)
+            @Html.ValidationMessageFor(model => model.password)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <div class="control-label col-md">
+            <input class="btn-lg" type="submit" value="Login" />
+        </div>
+    </div>
+</div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+
